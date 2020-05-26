@@ -3,4 +3,21 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="gray_light_interface">#53C5BDBD</color>
+    <color name="gray_dark_interface">#555454</color>
+    <color name="blue_extra_light_interface">#36B8F4</color>
+    <color name="green_extra_light_interface">#59F436</color>
+    <color name="red_extra_light_interface">#D81507</color>
+    <color name="yellow_extra_light_interface" />
+    <color name="gray_regular_interface">#9E9D9D</color>
+    <color name="gray_extra_light_interface">#9C9797</color>
+    <color name="blue_dark_interface">#368FF4</color>
+    <color name="white_interface">#FAFFFFFF</color>
+    <color name="green_regular_interface">#B5F436</color>
+    <color name="orange_dark_interface">#F48C36</color>
+    <color name="orange_extra_light_interface">#F7C48D</color>
+    <color name="red_dark_interface">#961107</color>
+    <color name="asg_yelp_image_view_group_overflow_background">#502B28</color>
+    <color name="blue_regular_interface">#36CEF4</color>
+    <color name="asg_social_button_facebook_background_color">#38201F</color>
 </resources>
