@@ -20,4 +20,34 @@
     <color name="asg_yelp_image_view_group_overflow_background">#502B28</color>
     <color name="blue_regular_interface">#36CEF4</color>
     <color name="asg_social_button_facebook_background_color">#38201F</color>
+    <color name="art_header">#cec6c0</color>
+    <color name="auto_header">#050505</color>
+    <color name="bar_header">#444749</color>
+    <color name="beauty_header">#37abdc</color>
+    <color name="education_header">#ba9a8e</color>
+    <color name="education_two_header">#5dbcd2</color>
+    <color name="farm_one">#504a30</color>
+    <color name="farm_two">#adc1cc</color>
+    <color name="fashion">#c1bcb4</color>
+    <color name="fitness_header">#211f20</color>
+    <color name="fitness_header_two">#a9c0db</color>
+    <color name="food_header">#a8aeb2</color>
+    <color name="food_header_two">#422f26</color>
+    <color name="health_header">#81776c</color>
+    <color name="hotel_header">#b9b3ad</color>
+    <color name="italian_header">#e0d2bf</color>
+    <color name="local_service_header">#5dbcd2</color>
+    <color name="medical_spa">#dedddc</color>
+    <color name="medical_spa_two">#afa9a2</color>
+    <color name="medical_spa_three">#e9b081</color>
+    <color name="museum_header">#b7bab6</color>
+    <color name="night_life_header">#1d0b5b</color>
+    <color name="pet_header">#8f8778</color>
+    <color name="physicians_header">#d2cfca</color>
+    <color name="professional_header">#413d39</color>
+    <color name="real_estate_header">#545b52</color>
+    <color name="resaurant">#c8b6a4</color>
+    <color name="restaurant_two">#ceb29e</color>
+    <color name="airplain_header">#e0d283</color>
+
 </resources>
