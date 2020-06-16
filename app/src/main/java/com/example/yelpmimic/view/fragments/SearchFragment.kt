@@ -1,15 +1,17 @@
 package com.example.yelpmimic.view.fragments
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.yelpmimic.R
-import com.example.yelpmimic.view.activities.MainActivity
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
@@ -36,15 +38,32 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        randomHeader()
-       setSearchBar()
+        val statusBarColor = activity!!.window
+
+        randomHeader(statusBarColor)
+        setSearchBar()
+
+        searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
+
+            hideSoftKeyboard(v)
+            appBarLayout.setExpanded(false)
+            statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
+        }
+
     }
 
+    private fun hideSoftKeyboard(view: View) {
+
+        var imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun randomHeader() {
+    private fun randomHeader(statusBarColor: Window) {
 
         val randomNumber = Random()
-        val statusBarColor = activity!!.window
+
         val number = randomNumber.nextInt(30)
 
         when (number) {
