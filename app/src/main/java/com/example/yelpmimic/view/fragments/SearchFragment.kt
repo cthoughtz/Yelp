@@ -24,6 +24,7 @@ class SearchFragment : Fragment() {
 
     var isBoolean= false
     var scrollRange = -1
+    var collaspedTracker = 0
 
 
     override fun onCreateView(
@@ -41,19 +42,31 @@ class SearchFragment : Fragment() {
         val statusBarColor = activity!!.window
 
         randomHeader(statusBarColor)
-        setSearchBar()
+        setSearchBar(statusBarColor)
+
+
 
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
 
+            // hides keyboard
             hideSoftKeyboard(v)
-            appBarLayout.setExpanded(false)
-            statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
+
+            // Makes toolbar collapse
+            if(collaspedTracker == 0) {
+
+                appBarLayout.setExpanded(false)
+                // Changes color of status bar
+                statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
+                collaspedTracker = 1
+            }
+
         }
 
     }
 
     private fun hideSoftKeyboard(view: View) {
 
+        // hides keyboard
         var imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
@@ -121,7 +134,7 @@ class SearchFragment : Fragment() {
                 mainHeaderImage.setImageResource(R.drawable.foodtwo)
                 statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.food_header_two)
             }
-            14 ->  {
+            14 -> {
                 mainHeaderImage.setImageResource(R.drawable.health)
                 statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.health_header)
             }
@@ -191,12 +204,13 @@ class SearchFragment : Fragment() {
 
     }
 
-    private fun setSearchBar() {
+    private fun setSearchBar(statusBarColor: Window) {
 
         var isShow = false
         var  scrollRange = -1
         appBarLayout.addOnOffsetChangedListener( object: AppBarLayout.OnOffsetChangedListener {
 
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
 
                 if (scrollRange == -1) {
@@ -204,12 +218,13 @@ class SearchFragment : Fragment() {
                 }
                 if (scrollRange + verticalOffset == 0) {
 
-
+                    statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
                     searchView.visibility = View.INVISIBLE
                     searchViewToolbar.visibility = View.VISIBLE
                     isShow = true
                 } else if (isShow) {
 
+                    randomHeader(statusBarColor)
                     searchView.visibility = View.VISIBLE
                     searchViewToolbar.visibility = View.INVISIBLE
                     isShow = false
