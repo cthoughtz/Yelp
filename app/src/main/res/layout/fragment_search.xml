@@ -90,6 +90,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/upper_card_view"
                     app:layout_constraintTop_toTopOf="@+id/innerConstraintLayout"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -107,7 +108,7 @@
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:layout_marginTop="40dp"
-                            android:src="@drawable/restaurants_one"
+                            android:src="@drawable/din_play"
                             app:layout_constraintEnd_toStartOf="@+id/delivery_logo"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
@@ -294,6 +295,120 @@
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lower_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/upper_card_view">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="30dp"
+                        android:background="@android:color/white">
+
+                        <TextView
+                            android:id="@+id/delivery_area_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20sp"
+                            android:layout_marginTop="20sp"
+                            android:text="Delivering to your area"
+                            android:textColor="@android:color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/classic_choices_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20sp"
+                            android:layout_marginTop="10dp"
+                            android:text="Classic choices"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/delivery_area_text" />
+
+                        <ImageView
+                            android:id="@+id/dots_images"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginRight="32dp"
+                            android:src="@drawable/dots"
+                            app:layout_constraintBottom_toBottomOf="@+id/classic_choices_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/classic_choices_text" />
+
+                        <HorizontalScrollView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/dots_images"
+                            app:layout_constraintStart_toStartOf="@+id/classic_choices_text"
+                            app:layout_constraintTop_toBottomOf="@+id/classic_choices_text">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/classic_choices_constraint_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="60dp">
+
+                                <ImageView
+                                    android:id="@+id/pizza_classic"
+                                    android:layout_width="250dp"
+                                    android:layout_height="150dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/pizza_classic"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="@+id/classic_choices_constraint_layout"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/chinese_classic"
+                                    android:layout_width="250dp"
+                                    android:layout_height="150dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/chinese_classic"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/pizza_classic"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/indian_classic"
+                                    android:layout_width="250dp"
+                                    android:layout_height="150dp"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginLeft="5dp"
+                                    android:src="@drawable/indian_classic"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/chinese_classic"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/thai_classic"
+                                    android:layout_width="250dp"
+                                    android:layout_height="150dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/thai_classic"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/indian_classic"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </HorizontalScrollView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
