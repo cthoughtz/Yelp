@@ -1,17 +1,23 @@
 package com.example.yelpmimic.view.fragments
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.util.Log
+import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.example.yelpmimic.R
+import com.example.yelpmimic.view.activities.MainActivity
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
@@ -25,6 +31,7 @@ class SearchFragment : Fragment() {
     var isBoolean= false
     var scrollRange = -1
     var collaspedTracker = 0
+    var switchOnSearchViewListener = false
 
 
     override fun onCreateView(
@@ -35,7 +42,7 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,8 +50,83 @@ class SearchFragment : Fragment() {
 
         randomHeader(statusBarColor)
         setSearchBar(statusBarColor)
+        collapseToolbar(statusBarColor)
+        styleSearchView()
+        searchQuery()
 
+    }
 
+    private fun searchQuery() {
+
+        val searchQuery = searchViewToolbar.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+
+        searchQuery.setOnEditorActionListener(object: TextView.OnEditorActionListener{
+
+            var searchInfo = searchQuery.text.toString()
+
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                    actionId == EditorInfo.IME_ACTION_DONE ||
+                    actionId == EditorInfo.IME_ACTION_SEND ||
+                    event?.action == KeyEvent.ACTION_DOWN &&
+                    event?.keyCode == KeyEvent.KEYCODE_ENTER){
+
+                   activity?.supportFragmentManager?.beginTransaction()
+                       ?.replace(R.id.wrapper,SearchResultsFragment(),"Search Result Fragment")
+                       ?.commit()
+
+                    return true
+                }
+
+                return false
+            }
+
+        })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun styleSearchView() {
+
+        // Set Search View Text Color
+        val searchText = searchViewToolbar.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+
+        // Style Text
+        searchText.setTextColor(Color.BLACK)
+        searchText.setHintTextColor(ContextCompat.getColor(requireActivity(),R.color.colorLightGrey))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun collapseToolbar(statusBarColor: Window?) {
+
+        searchView.setOnSearchClickListener {
+
+            hideSoftKeyboard(view!!)
+            appBarLayout.setExpanded(false)
+        }
+
+        searchView.setOnCloseListener {
+
+           hideSoftKeyboard(view!!)
+            appBarLayout.setExpanded(false)
+            false
+        }
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                hideSoftKeyboard(view!!)
+                appBarLayout.setExpanded(false)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                hideSoftKeyboard(view!!)
+                appBarLayout.setExpanded(false)
+                return false
+            }
+        })
 
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
 
@@ -56,12 +138,10 @@ class SearchFragment : Fragment() {
 
                 appBarLayout.setExpanded(false)
                 // Changes color of status bar
-                statusBarColor.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
+                statusBarColor?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.colorPrimaryDark)
                 collaspedTracker = 1
             }
-
         }
-
     }
 
     private fun hideSoftKeyboard(view: View) {
@@ -227,6 +307,7 @@ class SearchFragment : Fragment() {
                     randomHeader(statusBarColor)
                     searchView.visibility = View.VISIBLE
                     searchViewToolbar.visibility = View.INVISIBLE
+                    collaspedTracker = 0
                     isShow = false
                 }
             }
