@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
@@ -51,6 +52,135 @@
 
 
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <HorizontalScrollView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/filtered_items"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_filters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/rect_shape"
+                            android:drawableLeft="@drawable/h_adjustment"
+                            android:padding="5dp"
+                            android:text="Filter"
+                            android:textColor="@android:color/black" />
+
+                        <Button
+                            android:id="@+id/sort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Sort"
+                            android:drawableLeft="@drawable/decending_order_icons"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/offer_delivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Offers Delivery"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/offer_takeout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Offers Takeout"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/open_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Open Now"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Price"
+                            android:padding="5dp"
+                            android:drawableRight="@drawable/ic_baseline_more_horiz_24"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/curbside_pickup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Curbside Pickup"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/yelp_delivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Yelp Delivery"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                        <Button
+                            android:id="@+id/yelp_takeout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Yelp Takeout"
+                            android:padding="5dp"
+                            android:background="@drawable/rect_shape"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:id="@+id/divider_one"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/filtered_items"
+                    android:background="@color/gray_regular_interface"
+                    app:layout_goneMarginTop="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
